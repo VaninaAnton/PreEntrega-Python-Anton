@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Sitio Web{% endblock %}</title>
+    *{
+        padding: 0;
+        margin: 0;
+      }
+      .nav{
+        display: flex;
+        justify-content: flex-end;
+        background-color:#F2F2F2;
+        padding-right:20px;
+        padding-top: 15px;
+        list-style: none;
+        height: 30px;
+      }
+      .nav-item{
+        padding-left:  20px;
+        color:aqua;
+      }
+      .body{
+        background-color: #E0F8F7;
+      }
+      .title{
+        font-family: 'Calibri';
+        font-size: 50px;
+        display: flex;
+        justify-content: center;
+        background-image: url(imagen/background.jpeg);
+        color: #F2F2F2;
+        height: 100px;
+        padding-top: 50px;
+      }
+      list{
+        font-family: 'Calibri';
+        color: aqua;
+        padding-top: 20px;
+      }
+      .card {
+          padding: 10px;
+          margin: 10px;
+          display: inline-block;
+          font-family: 'Calibri';
+          margin-right: 60px;
+        }
+        .card-title{
+        font-family: 'Calibri';
+        font-size: 20px;
+        color: #2E64FE;
+      }
+        .card img {
+          max-width: 200px;
+        }
+          .button-container {
+          margin-top: 5px;
+        }
+          .btn{
+          background-color: white;
+          font-family: 'Calibri';
+          font-size: 15px;
+          color: #2E64FE;
+          border-radius: 5px;
+          border-color: aqua;
+          background-color: #81F7F3;
+        }
+          .favorites{
+          height: 400px;
+        }
+        .fantasy{
+          height: 400px;
+        }
+        .animate{
+          height: 400px;
+        }
+        .footer{
+          font-family: 'Calibri';
+          font-size: 15px;
+          display: flex;
+          justify-content: flex-end;
+          background-color: #F2F2F2;
+          height: 100px;
+          padding-top: 50px;
+          padding-right: 30px;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const fetchData = async (url) => {
+              const response = await fetch(url);
+              return response.json();
+            };
+          
+            const fantasyMovies = await fetchData('/data/fantasy-movies.json');
+            const animatedMovies = await fetchData('/data/animated-movies.json');
+            const favoriteMovies = JSON.parse(localStorage.getItem('favoriteMovies')) || [];
+          
+            const renderMovieCards = (container, movies) => {
+              container.innerHTML = '';
+              movies.forEach(movie => {
+                const isFavorite = favoriteMovies.some(favMovie => favMovie.title === movie.title);
+                const card = `
+                  <div class="card">
+                    <img src="${movie.image}" alt="${movie.title}">
+                    <h5 class="card-title">${movie.title}</h5>
+                    <div class="button-container">
+                      <button class="btn ${isFavorite ? 'btn-danger remove-btn' : 'btn-primary add-btn'}">
+                        ${isFavorite ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}
+                      </button>
+                    </div>
+                  </div>
+                `;
+                container.insertAdjacentHTML('beforeend', card);
+              });
+            };
+            
+              const fantasyContainer = document.getElementById('fantasyMovies');
+            const animatedContainer = document.getElementById('animatedMovies');
+            const favoriteContainer = document.getElementById('favoriteMovies');
+          
+            renderMovieCards(fantasyContainer, fantasyMovies);
+            renderMovieCards(animatedContainer, animatedMovies);
+            renderMovieCards(favoriteContainer, favoriteMovies);
+          
+            document.addEventListener('click', async (event) => {
+              if (event.target.matches('.add-btn, .remove-btn')) {
+                const movieTitle = event.target.closest('.card').querySelector('.card-title').textContent;
+                const isFavorite = favoriteMovies.some(movie => movie.title === movieTitle);
+          
+                if (!isFavorite) {
+                  const movie = { title: movieTitle };
+                  favoriteMovies.push(movie);
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Película agregada a favoritos con éxito',
+                  })
+                } else {
+                  const index = favoriteMovies.findIndex(movie => movie.title === movieTitle);
+                  favoriteMovies.splice(index, 1);
+                }
+          
+                localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
+                renderMovieCards(favoriteContainer, favoriteMovies);
+              }
+            });
+          });
+          
+</head>
+<body>
+    <header>
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Películas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Series</a>
+        </li>
+      </ul>
+    </header>
+
+    <main>
+        {% block content %}
+        <main class="body">
+            <h1 class="title"> My Pelis </h1>
+          
+            <h2 class="list">Películas de Fantasía</h2>
+            <div id="fantasyMovies" class="fantasy">
+              <!-- Las tarjetas de películas de fantasía se agregarán aquí dinámicamente -->
+            </div>
+          
+            <h2 class="list">Películas Animadas</h2>
+            <div id="animatedMovies" class="animate">
+              <!-- Las tarjetas de películas animadas se agregarán aquí dinámicamente -->
+            </div>
+        
+            
+            <h2 class="list">Mis Películas Favoritas</h2>
+            <div id="favoriteMovies" class="favorites">
+              <!-- Las tarjetas de películas favoritas se agregarán aquí dinámicamente -->
+            </div>
+        
+            <footer class="footer">
+              <h3>Proyecto Final Javascript </h3>
+            </footer>
+        </main>
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <h3>Proyecto Final Python </h3>
+    </footer>
+</body>
+</html>

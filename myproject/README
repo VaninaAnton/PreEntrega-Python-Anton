@@ -1,0 +1,24 @@
+# Mi Proyecto Django
+
+Este es mi proyecto Django desarrollado con el patrón MVT (Modelo-Vista-Template).
+
+## Funcionalidades
+
+- **Herencia de HTML**: Se ha implementado la herencia de plantillas HTML para una mejor organización del código.
+- **Modelos**: Se han definido tres clases de modelos en la aplicación "accounts".
+- **Formularios**: Se han creado formularios para insertar datos en las clases de modelos y para realizar búsquedas en la base de datos.
+- **Vistas**: Se han modificado las vistas para manejar los formularios y presentar los datos correctamente.
+
+## Orden para probar las funcionalidades
+
+1. Ingresar datos a través de los formularios en la página de inicio.
+2. Realizar búsquedas utilizando el formulario de búsqueda.
+3. Navegar por otras páginas del sitio, como la página "Acerca de Nosotros".
+
+## Estructura del Repositorio
+
+- `accounts`: Contiene los modelos, formularios y vistas relacionados con la gestión de cuentas.
+- `blog`: Contiene los archivos relacionados con la funcionalidad de un blog (aunque no se proporcionó en el código, se asume su existencia).
+- `myproject`: Contiene la configuración del proyecto Django.
+
+¡Disfruta explorando mi proyecto Django!

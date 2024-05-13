@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Harry Potter",
+      "category": "fantasy",
+      "image": "/imagen/harry-potter.1.jpg"
+    },
+    {
+      "title": "El Señor de los Anillos",
+      "category": "fantasy",
+      "image": "/imagen/señor-de-los-anillos.jpeg"
+    },
+    {
+      "title": "El Hobbit",
+      "category": "fantasy",
+      "image": "/imagen/hobbit.jpg"
+    },
+    {
+      "title": "Animales Fantásticos",
+      "category": "fantasy",
+      "image": "/imagen/animales-fantasticos.jpg"
+    },
+    {
+      "title": "Alicia en el país de las maravillas",
+      "category": "fantasy",
+      "image": "/imagen/alicia.jpg"
+    }
+  ]  

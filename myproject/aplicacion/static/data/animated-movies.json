@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Lilo & Stich",
+      "category": "animated",
+      "image": "/imagen/stich.jpeg"
+    },
+    {
+      "title": "Up",
+      "category": "animated",
+      "image": "/imagen/up.jpg"
+    },
+    {
+      "title": "Moana",
+      "category": "animated",
+      "image": "/imagen/moana.jpeg"
+    },
+    {
+      "title": "Mi Villano Favorito",
+      "category": "animated",
+      "image": "/imagen/mi-villano.jpeg"
+    },  {
+      "title": "Encanto",
+      "category": "animated",
+      "image": "/imagen/encanto.jpeg"
+    }
+  ]
+  

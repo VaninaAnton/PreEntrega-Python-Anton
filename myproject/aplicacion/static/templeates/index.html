@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+
+{% block content %}
+<h1>My Pelis</h1>
+<main class="body">
+  <h1 class="title"> My Pelis </h1>
+
+  <h2 class="list">Películas de Fantasía</h2>
+  <div id="fantasyMovies" class="fantasy">
+    <!-- Las tarjetas de películas de fantasía se agregarán aquí dinámicamente -->
+  </div>
+
+  <h2 class="list">Películas Animadas</h2>
+  <div id="animatedMovies" class="animate">
+    <!-- Las tarjetas de películas animadas se agregarán aquí dinámicamente -->
+  </div>
+
+  
+  <h2 class="list">Mis Películas Favoritas</h2>
+  <div id="favoriteMovies" class="favorites">
+    <!-- Las tarjetas de películas favoritas se agregarán aquí dinámicamente -->
+  </div>
+
+  <footer class="footer">
+    <h3>Proyecto Final Javascript </h3>
+  </footer>
+</main>
+{% endblock %}
